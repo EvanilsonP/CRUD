@@ -3,6 +3,7 @@ package com.lambdCode.springcrud.controller;
 import com.lambdCode.springcrud.entity.User;
 import com.lambdCode.springcrud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,4 +30,23 @@ public class UserController {
     public User getUser(@RequestParam Integer id) {
         return userService.getUser(id);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Void> updateUser(@PathVariable Integer id, @RequestBody User user) {
+        userService.updateUser(id, user);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
