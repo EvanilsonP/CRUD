@@ -39,4 +39,11 @@ public class UserServiceImpl implements UserService {
         user.setId(id);
         userRepository.save(user);
     }
+
+    @Override
+    public void deleteUser(Integer id) {
+        // check whether the user is in the database or not
+        User user = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid id: " + id));
+        userRepository.delete(user);
+    }
 }
